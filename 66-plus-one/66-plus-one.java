@@ -1,19 +1,15 @@
 class Solution {
-    public int[] plusOne(int[] d) {
-        StringBuilder s= new StringBuilder();
-        int c=1,n=d.length;
+    public int[] plusOne(int[] digits) {
+        int n=digits.length;
         for(int i=n-1;i>=0;i--){
-            s.append(Integer.toString((d[i]+c)%10));
-            c=(d[i]+c)/10;
+            digits[i]++;
+            if(digits[i]<=9){
+                return digits;
+            }
+            digits[i]=0;
         }
-        if(c>0)
-            s.append(Integer.toString(c));
-        
-        int n1=s.length();
-        int a[]=new int[n1];
-        for (int i=0;i<n1;i++)
-            a[n1-1-i]=s.charAt(i)-'0';
-        
-        return a;
+        int[] res=new int[n+1];
+        res[0]=1;
+        return res;
     }
 }
