@@ -44,7 +44,7 @@ class Solution {
                 Pair p = new Pair(temp,count);
                 
                 
-                while(!st.isEmpty() && count != st.peek().dep+1){
+                while(!st.isEmpty() && count <= st.peek().dep){
                     st.pop();   
                 }             
                 if(!st.isEmpty() && st.peek().node.left == null){
