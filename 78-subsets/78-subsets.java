@@ -7,15 +7,14 @@ class Solution {
     }
     public void backtrack(int s,ArrayList<Integer> a, int []n, int i){
         
-          ans.add(new ArrayList(a));
-         
-        for (int j = s; j < n.length; j++) {
+          
+        if(s==n.length){ ans.add(new ArrayList(a));return;}
           // add i into the current combination
-          a.add(n[j]);
+          a.add(n[s]);
           // use next integers to complete the combination
-          backtrack(j + 1, a, n,i);
+          backtrack(s + 1, a, n,i);
           // backtrack
           a.remove(a.size() - 1);
-        }
+        backtrack(s+ 1, a, n,i);
     }
 }
