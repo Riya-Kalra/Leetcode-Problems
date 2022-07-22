@@ -17,7 +17,7 @@ class Solution {
             last[x] = i;
         }
 
-        dp[N]--;
+        dp[N]--;//removing the empty {} subsequence
         if (dp[N] < 0) dp[N] += MOD;
         return dp[N]; 
     }
