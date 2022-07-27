@@ -15,17 +15,13 @@ class Solution {
         
         if(i==-1)
             return -1;
-        int ind=0;char min='9';
-        for(int j=n-1;j>i;j--){
-            if(ch[j]>ch[i] && min>=ch[j]){
-                min=ch[j];
-                ind=j;
-            }
-        }
+        int k = ch.length-1;
+        while(ch[k] <= ch[i])
+            k--;
         //System.out.println(i+" "+ind);
         char t=ch[i];
-        ch[i]=ch[ind];
-        ch[ind]=t;
+        ch[i]=ch[k];
+        ch[k]=t;
         //System.out.println(Arrays.toString(ch));
         Arrays.sort(ch,i+1,n);
         String ans=String.valueOf(ch);
