@@ -1,19 +1,22 @@
 class Solution {
     public int coinChange(int[] coins, int amount) {
         int c=coins.length;
-        int dp[][]=new int [c+1][amount+1];
-        for(int i=0;i<=c;i++){
+        int prev[]=new int [amount+1];
+        int dp[]=new int [amount+1];
+        prev[0]=0;
+        for(int j=1;j<=amount;j++)
+            prev[j]=Integer.MAX_VALUE-1;
+        for(int i=1;i<=c;i++){
             for(int j=0;j<=amount;j++){
                 if (j == 0)
-                    dp[i][j] =  0;
-                else if (i==0)
-                    dp[i][j] =Integer.MAX_VALUE-1;
+                    dp[j] =  0;
                 else if (coins[i-1]<=j)
-                    dp[i][j]= Math.min(0 + dp[i - 1][j], 1 + dp[i][j - coins[i - 1]]);
+                    dp[j]= Math.min(0 + prev[j], 1 + dp[j - coins[i - 1]]);
                 else
-                    dp[i][j]=0 + dp[i - 1][j];
+                    dp[j]=0 + prev[j];
             }
+            prev=dp;
         }
-        return dp [c][amount]>=Integer.MAX_VALUE-1?-1:dp [c][amount];
+        return prev[amount]>=Integer.MAX_VALUE-1?-1:prev[amount];
     }
 }
