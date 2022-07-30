@@ -29,7 +29,7 @@ class Solution {
         ans[0]=Math.min(l[0],r[0]);
         ans[1]=Math.max(l[1],r[1]);
         if(ans[0]!=Integer.MAX_VALUE)
-        diff=Math.max(diff,Math.abs(root.val-ans[0]));
+            diff=Math.max(diff,Math.abs(root.val-ans[0]));
         if(ans[1]!=Integer.MIN_VALUE)
              diff=Math.max(diff,Math.abs(root.val-ans[1]));
         ans[0]=Math.min(ans[0],root.val);
