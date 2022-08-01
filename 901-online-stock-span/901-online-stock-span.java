@@ -14,6 +14,7 @@ class StockSpanner {
     
     public int next(int price) {
         int ans=-1;
+        //Decreasing stack
         while(!stk.isEmpty() && stk.peek().val<=price){
             stk.pop();
         }
