@@ -22,31 +22,26 @@ class Solution {
             l2 = l2.next;
         }
         
-        int sum = 0;
-        ListNode curr = new ListNode(0);
+        int sum = 0,count=0;
+        ListNode head=null,curr = null;
         ListNode ptr=curr;
         while (!s1.empty() || !s2.empty()) {
             if (!s1.empty()) 
                 sum += s1.pop();
             if (!s2.empty()) 
                 sum += s2.pop();
-            
-            curr.next= new ListNode(sum % 10);
-            curr=curr.next;
+            head= new ListNode(sum % 10);
+            if(count!=0)
+            head.next=curr;
+            curr=head;
             sum /= 10;
+            count++;
         }
-        if(sum!=0)
-           curr.next= new ListNode(sum); 
-        return reverse(ptr.next);
-    }
-     public ListNode reverse(ListNode curr){
-        ListNode next=null,prev=null;
-        while(curr!=null){
-            next=curr.next;
-            curr.next=prev;
-            prev=curr;
-            curr=next;
+        if(sum!=0){
+           head= new ListNode(sum % 10);
+            head.next=curr;
         }
-        return prev;
+        return head;
     }
+    
 }
