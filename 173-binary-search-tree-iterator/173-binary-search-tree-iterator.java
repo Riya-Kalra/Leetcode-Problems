@@ -19,7 +19,6 @@ class BSTIterator {
     public BSTIterator(TreeNode root) {
         curr=root;
         s=new Stack();
-       
     }
     
     public int next() {
@@ -32,12 +31,10 @@ class BSTIterator {
         int v=curr.val;
         curr=curr.right;
         return v;
-        
-       
     }
     
     public boolean hasNext() {
-        if(!s.isEmpty()|| curr!=null)
+         if(!s.isEmpty()|| curr!=null)
             return true;
         return false;
     }
