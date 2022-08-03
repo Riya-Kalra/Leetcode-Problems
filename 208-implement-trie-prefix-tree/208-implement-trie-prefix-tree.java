@@ -1,63 +1,61 @@
+class Node{
+    Node link[]=new Node[26];
+    boolean flag=false;
+    boolean containsKey(char ch){
+         return (link[ch-'a']!=null);
+     }
+    void put(char ch,Node node){
+        link[ch-'a'] =node;
+     }
+    Node get(char ch){
+            return (link[ch-'a']);
+        }
+    boolean isEnd(){
+        return flag;
+    }
+}
 class Trie {
-    private Node root;
+    Node root;
     public Trie() {
         root=new Node();
     }
     
     public void insert(String word) {
+        int n=word.length();
         Node node=root;
-        for(int i=0;i<word.length();i++){
+        for(int i=0;i<n;i++){
             char ch=word.charAt(i);
             if(!node.containsKey(ch))
                 node.put(ch,new Node());
             node=node.get(ch);
-        }
-        node.setEnd();
+            }
+            node.flag=true;
     }
     
     public boolean search(String word) {
+        int n=word.length();
         Node node=root;
-         for(int i=0;i<word.length();i++){
+        for(int i=0;i<n;i++){
             char ch=word.charAt(i);
             if(!node.containsKey(ch))
                 return false;
              node=node.get(ch);
-         }
-        if(node.isEnd())
-            return true;
-        return false;
+        }
+        return (node.isEnd());
+            
     }
     
     public boolean startsWith(String prefix) {
+        int n=prefix.length();
         Node node=root;
-        for(int i=0;i<prefix.length();i++){
+        for(int i=0;i<n;i++){
             char ch=prefix.charAt(i);
             if(!node.containsKey(ch))
                 return false;
              node=node.get(ch);
-         }
+        }
         return true;
     }
-}
-class Node{
-        Node link[]=new Node[26];
-        boolean flag=false;
-        boolean containsKey(char ch){
-            return (link[ch-'a']!=null);
-        }
-        boolean isEnd(){
-            return flag;
-        }
-        void setEnd(){
-            flag=true;
-        }
-        Node get(char ch){
-            return (link[ch-'a']);
-        }
-        void put(char ch,Node node){
-            link[ch-'a']=node;
-        }
-    
 }
 
 /**
