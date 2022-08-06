@@ -12,17 +12,17 @@ class AuthenticationManager {
     }
     
     public void renew(String tokenId, int currentTime) {
-       clean(currentTime);
+       clean(currentTime);//cleaning everytime to keep the order correct
         
         if(map.containsKey(tokenId) ) {
-            map.remove(tokenId);
+            map.remove(tokenId);//To rectify the order we are removing it and then replacing it
             map.put(tokenId, currentTime + timeToLive);
         }
     }
     
     public int countUnexpiredTokens(int currentTime) {
         clean(currentTime);
-        
+        //System.out.println(map.toString());
         return map.size();
     }
     
