@@ -28,9 +28,6 @@ class Solution {
     public String findParent(String node){
         if(parent.get(node).equals(node))
             return node;
-       /* String x=findParent(parent.get(node));
-        parent.put(node, x );
-        return x;*/
        return findParent(parent.get(node));
     }
     public void union(String u,String v){
