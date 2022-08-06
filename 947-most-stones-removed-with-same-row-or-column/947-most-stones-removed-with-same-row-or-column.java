@@ -1,6 +1,6 @@
 class Solution {
     HashMap <String,String> parent= new HashMap<>();
-     HashMap <String,Integer> size= new HashMap<>();
+    
      int count;
     public int removeStones(int[][] stones) {
         int n=stones.length;
@@ -9,7 +9,7 @@ class Solution {
         for(int i=0;i<n;i++){
             String s = stones[i][0] + " " + stones[i][1];
             parent.put(s,s);
-            size.put(s,1);
+          
             
         }
        for (int[] s1 : stones) {
@@ -36,14 +36,9 @@ class Solution {
        // System.out.println(u+" "+v+" "+count);
         if(rootu.equals(rootv))
             return ;
-        if(size.get(rootu)> size.get(rootv)) {
-                parent.put(rootv,rootu);
-                size.put(rootu,size.get(rootu) +size.get(rootv));
-        } 
-        else {
-                parent.put(rootu,rootv);
-                size.put(rootv,size.get(rootv) +size.get(rootu));
-        }
+       
+        parent.put(rootu,rootv);
+               
         count--;
     }
 }
