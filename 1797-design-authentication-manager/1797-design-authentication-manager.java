@@ -14,7 +14,7 @@ class AuthenticationManager {
     public void renew(String tokenId, int currentTime) {
        clean(currentTime);
         
-        if(map.get(tokenId) != null) {
+        if(map.containsKey(tokenId) ) {
             map.remove(tokenId);
             map.put(tokenId, currentTime + timeToLive);
         }
