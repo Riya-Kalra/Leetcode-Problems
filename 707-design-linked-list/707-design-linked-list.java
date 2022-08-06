@@ -42,12 +42,6 @@ class MyLinkedList {
             head=node;
         }
         size++;
-        /*Node temp = h;
-        while(temp != t){
-            System.out.print(temp.val +  " ");
-            temp =temp.next;
-        }
-        System.out.println();*/
     }
     
     public void addAtTail(int val) {
@@ -60,11 +54,7 @@ class MyLinkedList {
         tail=node;
         Node temp = h;
         size++;
-        /*while(temp != t){
-            System.out.print(temp.val +  " ");
-            temp =temp.next;
-        }
-        System.out.println();*/
+        
     }
     
     public void addAtIndex(int index, int val) {
@@ -89,11 +79,6 @@ class MyLinkedList {
         }
         
         size++;
-        /*while(temp != t){
-            System.out.print(temp.val +  " ");
-            temp =temp.next;
-        }
-        System.out.println();*/
     }
     
     public void deleteAtIndex(int index) {
@@ -117,11 +102,6 @@ class MyLinkedList {
         n2.prev=curr;
         Node temp = h;
         size--;
-        /*while(temp != t){
-            System.out.print(temp.val +  " ");
-            temp =temp.next;
-        }
-        System.out.println();*/
     }
 }
 
