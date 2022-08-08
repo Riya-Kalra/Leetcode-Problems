@@ -1,21 +1,34 @@
 class Solution {
     int dp[][];
     public int lengthOfLIS(int[] nums) {
-        int n=nums.length;
-        dp= new int[n][n];
-        for(int i=0;i<n;i++)
-            Arrays.fill(dp[i],-1);
-        return f(0,-1,nums);
+         int n=nums.length,lis=0;
+        int inc_seq[]=new int[n];
+        inc_seq[0]=nums[0];int k=0;
+        for (int i=1;i<n;i++){
+            if(nums[i]>inc_seq[k]){
+                k++;
+                inc_seq[k]=nums[i];
+            }
+            else{
+                int idx=BS(inc_seq,nums[i],k);
+                inc_seq[idx]=nums[i];
+            }
+        }
+       
+        return k+1;
     }
-    int f(int i,int prev_i,int[] nums){
-        if(i==nums.length)
-            return 0;
-        if(dp[i][prev_i+1]!=-1)
-            return dp[i][prev_i+1];
-        int len=0+f(i+1,prev_i,nums);//Not Take
-        if(prev_i==-1 || nums[i]>nums[prev_i])
-            len=Math.max(len,1+f(i+1,i,nums));
+    public int BS (int a[],int i,int k){
+        int s=0,e=k, ans=k;
+        while(s<=e){
+            int mid= s+(e-s)/2;
+            if(a[mid]>=i){
+                ans=mid;
+                e=mid-1;
+            }
+            else
+                s=mid+1;
+        }
         
-        return dp[i][prev_i+1]=len;  
+        return ans;
     }
 }
