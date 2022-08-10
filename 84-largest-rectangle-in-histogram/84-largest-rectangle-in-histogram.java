@@ -35,4 +35,4 @@ class Solution {
         return max;
     }
 }
-// for any bar to be included it
+//For any bar i the maximum rectangle is of width r - l - 1 where r - is the last coordinate of the bar to the right with height h[r] >= h[i] and l - is the last coordinate of the bar to the left which height h[l] >= h[i]
