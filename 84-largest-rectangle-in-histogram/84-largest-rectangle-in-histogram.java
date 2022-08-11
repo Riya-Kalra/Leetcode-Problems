@@ -1,38 +1,22 @@
 class Solution {
     public int largestRectangleArea(int[] heights) {
-        int n=heights.length;
-        int leftmax[]=new int[n];
-        int rightmax[]=new int[n];
-        Stack <Integer> stk= new Stack<>();
-        leftmax[0]=0;
-        stk.push(0);
-        for(int i=1;i<n;i++){
-             while(!stk.isEmpty() && heights[stk.peek()]>=heights[i]){
-                 stk.pop();
-             }
-            if(stk.isEmpty())
-                leftmax[i]=0;
-            else
-                leftmax[i]= stk.peek()+1;
-            stk.push(i);
+        Stack<Integer> stack = new Stack<>();
+        int n = heights.length, maxArea = 0;
+        stack.push(-1);
+        for(int i = 0; i < n; i++){
+            while(stack.peek() != -1 && heights[stack.peek()] >= heights[i]){
+                int h = heights[stack.pop()];
+                int w = i - stack.peek() - 1;
+                maxArea = Math.max(maxArea, h * w);
+            }
+            stack.push(i);
         }
-        stk.clear();
-        stk.push(n-1);
-        rightmax[n-1]=n-1;
-        for(int i=n-2;i>=0;i--){
-             while(!stk.isEmpty() && heights[stk.peek()]>=heights[i]){
-                 stk.pop();
-             }
-            if(stk.isEmpty())
-                rightmax[i]=n-1;
-            else
-                rightmax[i]= stk.peek()-1;
-            stk.push(i);
+        while(stack.peek() != -1){
+            int h = heights[stack.pop()];
+            int w = n - stack.peek() - 1;
+            maxArea = Math.max(maxArea, h * w);
         }
-        int max=0;
-        for(int i=0;i<n;i++)
-            max=Math.max(max,(rightmax[i]-leftmax[i]+1)*heights[i]);
-        return max;
+        return maxArea;
     }
 }
 //For any bar i the maximum rectangle is of width r - l - 1 where r - is the last coordinate of the bar to the right with height h[r] >= h[i] and l - is the last coordinate of the bar to the left which height h[l] >= h[i]
