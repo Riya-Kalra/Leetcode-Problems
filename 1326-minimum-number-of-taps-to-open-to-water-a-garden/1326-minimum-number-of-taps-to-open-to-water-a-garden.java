@@ -7,13 +7,19 @@ class Solution {
         }
         Arrays.sort(area,(a,b)->(a[0]-b[0]));
          
-        int count = 0, start_time = 0, end_time = 0, i = 0;
+        int count = 0, start_time = 0, end_time = 0, i=0;
         
         while (end_time < n) {
-            for (i=0 ; i <= n && area[i][0] <= start_time; i++) {
+             
+            
+           while( i <= n && area[i][0] <= start_time) {
                 end_time = Math.max(end_time, area[i][1]);
+                i++;
             }
-            if (start_time == end_time) return -1;
+            
+            if (start_time == end_time) 
+                return -1;
+            
             start_time = end_time;
             count++;
         }
