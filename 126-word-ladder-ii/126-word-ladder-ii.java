@@ -29,7 +29,7 @@ class Solution {
         }
         
         HashSet<String> isEnqueued = new HashSet<>();
-        isEnqueued.add(beginWord);
+        isEnqueued.add(beginWord);//Words that have been visited
         
         while(queue.size() > 0){
             
@@ -42,7 +42,7 @@ class Solution {
                 
                 for(String word : neighbours){
                     
-                    visited.add(word);
+                    visited.add(word); //Words that have been visited on current level
                     
                     if(!adj.containsKey(word)){
                         adj.put(word, new ArrayList<>());
@@ -65,6 +65,7 @@ class Solution {
             }
         }
     }
+    //From begin word which all word can reached 
     public void backtrack(String word, String endWord, List<String> list){
         //System.out.println(word);
         if(word.equals(endWord)){
@@ -81,13 +82,18 @@ class Solution {
             list.remove(list.size() - 1);
         }
     }
+    
     public List<String> transformed(String s, Set<String> set){
+        
         List<String> list = new ArrayList<>();
         char word[] = s.toCharArray();
+        
         for(int i = 0; i < s.length(); i++){
             char old = word[i];
+            
             for(char c = 'a'; c <= 'z'; c++){
                 word[i] = c;
+                
                 if(c != old && set.contains(String.valueOf(word))){
                     list.add(String.valueOf(word));
                 }
