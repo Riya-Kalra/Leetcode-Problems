@@ -1,23 +1,21 @@
 class Solution {
     public int longestSubstring(String s, int k) {
-        int len=00;
-        for(int j=0;j<s.length();j++){
-            int count[]= new int[26];
-            for(int i=j;i<s.length();i++){
-                char ch= s.charAt(i);
-                count[ch-'a']++;
-                if(isValid(count,k))
-                    len=Math.max(len,i-j+1);
-
+      return solve(s,0,s.length(),k);
+    }
+    int solve(String s, int start, int end, int k) {
+        if (end < k) return 0;
+        int[] count = new int[26];
+        // update the count with the count of each character
+        for (int i = start; i < end; i++)
+            count[s.charAt(i) - 'a']++;
+        for (int mid = start; mid < end; mid++) {
+            if (count[s.charAt(mid) - 'a'] < k) {
+                int midNext = mid + 1;
+                while (midNext < end && count[s.charAt(midNext) - 'a'] < k) 
+                    midNext++;
+                return Math.max( solve(s, start, mid, k), solve(s, midNext, end, k));
             }
         }
-        return len;
-    }
-    boolean isValid(int count[],int k){
-        for(int i=0;i<26;i++){
-            if(count[i]>0 && count[i]<k)
-                return false;
-        }
-        return true;
+        return (end - start);
     }
 }
