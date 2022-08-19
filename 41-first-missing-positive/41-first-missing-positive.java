@@ -1,11 +1,11 @@
 class Solution {
     public int firstMissingPositive(int[] nums) {
-        TreeMap <Integer,Integer> map = new TreeMap<>();
+        TreeSet <Integer> set = new TreeSet<>();
         for(int n: nums)
-            map.put(n,map.getOrDefault(n,0)+1);
+            set.add(n);
         int i=1;
         while(true){
-            if(map.containsKey(i))
+            if(set.contains(i))
                 i++;
             else
                 return i;
