@@ -1,13 +1,20 @@
 class Solution {
     public int findMinFibonacciNumbers(int k) {
         if (k < 2) return k;
-        int a = 1, b = 1;
-        while (b <= k) {
-            int c=a+b;
-            a=b;
+        TreeSet<Integer> set = new TreeSet<>();
+        int a=0,b=1;
+        while(b < k) {
+            int c = a+b; 
+            a = b;
             b=c;
-            
+            set.add(b);
         }
-        return 1 + findMinFibonacciNumbers(k - a);
+        int res = 0;
+        while (k > 0) {
+            int fib = set.floor(k);
+            k -= fib;
+            res++;
+        }
+        return res;
     }
 }
