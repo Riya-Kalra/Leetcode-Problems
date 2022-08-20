@@ -15,9 +15,9 @@
  */
 class Solution {
     public List<String> binaryTreePaths(TreeNode root) {
-        HashSet<String> ans= new HashSet<String> ();
+        List<String> ans= new ArrayList<String> ();
         if(root==null)
-            return new ArrayList<String>(ans);
+            return (ans);
         String s=Integer.toString(root.val);
         if(root.left==null && root.right==null)
             ans.add(s);
@@ -26,9 +26,9 @@ class Solution {
         if(root.right!=null)
         dfs(root.right,s,ans);
         
-        return new ArrayList<String>(ans);
+        return (ans);
     }
-    public void dfs(TreeNode root, String s,HashSet <String> ans){
+    public void dfs(TreeNode root, String s,List <String> ans){
         if(root.left==null && root.right==null){
             s+="->"+Integer.toString(root.val);
             ans.add(s);
