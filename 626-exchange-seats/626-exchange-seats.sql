@@ -1,11 +1,11 @@
 # Write your MySQL query statement below
 SELECT
-	CASE
-		WHEN seat.id % 2 = 0 THEN seat.id - 1
-        WHEN seat.id = (SELECT COUNT(*) FROM seat) THEN seat.id
+    Case
+		When id % 2 = 0 THEN id - 1
+        When id = (SELECT COUNT(*) FROM seat) THEN id
 		ELSE
 			seat.id + 1
-	END as id,
+	END as 'id',
 	student 
 FROM seat
 ORDER BY id;
