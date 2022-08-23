@@ -4,7 +4,7 @@ SELECT
 		When id % 2 = 0 THEN id - 1
         When id = (SELECT COUNT(*) FROM seat) THEN id
 		ELSE
-			seat.id + 1
+			id + 1
 	END as 'id',
 	student 
 FROM seat
