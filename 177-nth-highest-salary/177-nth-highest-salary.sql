@@ -5,6 +5,6 @@ BEGIN
       # Write your MySQL query statement below.
      
       Select Distinct salary From Employee
-      ORDER BY salary desc limit 1 offset N
+      ORDER BY salary desc limit N,1
   );
 END
